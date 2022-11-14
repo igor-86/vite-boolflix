@@ -10,9 +10,9 @@ export default {
         }
     },
     methods: {
-        getNation() {
-            this.store.listFilm.original_language = this.imgLang;
-        }
+        getImagePath(imgPath) {
+            return new URL(imgPath, import.meta.url).href;
+        },
     }
 }
 </script>
@@ -22,7 +22,7 @@ export default {
     <div class="list" v-for="(inner, index) in this.store.listFilm" :key="index">
         <h4>{{ inner.title }}</h4>
         <h4>{{ inner.original_title }}</h4>
-        <p>{{ inner.original_language }}</p>
+        <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
         <p>{{ inner.vote_average }}</p>
     </div>
     <h2>{{ name }}</h2>
@@ -37,4 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/general.scss" as *;
+
+img {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+}
 </style>

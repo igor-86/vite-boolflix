@@ -6,4 +6,5 @@ export const store = reactive({
     searchKey: "",
     listFilm: [],
     listSeries: [],
+    loading: false,
 });
