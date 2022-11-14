@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             store,
-            name: "AppSearch",
+            name: "Boolfix",
 
         }
     },
