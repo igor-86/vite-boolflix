@@ -7,20 +7,18 @@ export default {
         return {
             store,
             name: "AppSearch",
+
         }
     },
-    components: {
-
-    }
 }
 </script>
 
 <template>
     <h2>{{ name }}</h2>
     <div class="form-search">
-        <label for="serach">Ricerca film</label>
-        <input type="text" name="" id="search" placeholder="scrivi qui">
-        <button class="btn-1 ms-1">Cerca</button>
+
+        <input type="text" placeholder="scrivi qui" v-model="store.searchKey">
+        <button class="btn-1 ms-1" @click="$emit('startSearch')">Cerca</button>
     </div>
 
 </template>
