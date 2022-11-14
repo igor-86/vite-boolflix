@@ -18,14 +18,40 @@ export default {
     this.getMovies();
   },
   methods: {
+    //Movies
     getMovies() {
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=14152c5e090182b9de00cb70bbc025c3&query=${this.store.searchKey}`).then((resp) => {
-        this.store.listFilm = resp.data.results;
-        console.log(this.store.listFilm);
-      })
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=14152c5e090182b9de00cb70bbc025c3&query=${this.store.searchKey}`)
+        .then((resp) => {
+          this.store.listFilm = resp.data.results;
+          console.log(this.store.listFilm);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          console.log("Chiamata terminata");
+          //serie
+          axios.get(`https://api.themoviedb.org/3/search/tv?api_key=14152c5e090182b9de00cb70bbc025c3&query=${this.store.searchKey}`)
+            .then((resp) => {
+              this.store.listSeries = resp.data.results;
+              console.log(this.store.listSeries);
+            })
+            .catch((error) => {
+              console.log(error, "errore");
+            })
+            .finally(() => {
+              console.log("fine chiamata serie");
+            })
 
+
+        })
 
     }
+    //Series
+
+
+
+
   }
 }
 </script>
