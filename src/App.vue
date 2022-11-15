@@ -58,9 +58,19 @@ export default {
 
 <template>
   <AppSearch @startSearch="getMovies" />
-  <AppCards />
+  <section class="main">
+    <AppCards />
+  </section>
 </template>
 
 <style lang="scss">
 @use "./styles/general.scss" as *;
+
+.main {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background-color: aqua;
+  margin-top: 80px;
+  overflow-y: scroll;
+}
 </style>

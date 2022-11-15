@@ -1,5 +1,6 @@
 <script>
 import { store } from '../store';
+import AppStars from './AppStars.vue';
 
 export default {
     data() {
@@ -14,30 +15,56 @@ export default {
         getImagePath(imgPath) {
             return new URL(imgPath, import.meta.url).href;
         },
+    },
+    components: {
+        AppStars
+
     }
 }
 </script>
 
 <template>
-    <h2>{{ nameF }}</h2>
-    <div class="list" v-for="(inner, index) in this.store.listFilm" :key="index">
-        <div class="img-poster">
-            <img :src="`http://image.tmdb.org/t/p/w342/${inner.poster_path}`" alt="">
+    <!-- MOVIES -->
+    <div class="container-fluid">
+        <div class="list" v-if="store.listFilm.length > 0">
+            <h2 class="text-center">{{ nameF }}</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-0">
+                <div class="col" v-for="(inner, index) in this.store.listFilm" :key="index">
+                    <div class="mycard">
+                        <div class="img-poster">
+                            <img :src="`http://image.tmdb.org/t/p/w342/${inner.poster_path}`" alt="">
+                        </div>
+                        <div class="info">
+                            <h4>Titolo:{{ inner.title }}</h4>
+                            <h4>Titolo originale:{{ inner.original_title }}</h4>
+                            <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
+                            <AppStars :item="inner" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h4>{{ inner.title }}</h4>
-        <h4>{{ inner.original_title }}</h4>
-        <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
-        <p>{{ inner.vote_average }}</p>
     </div>
-    <h2>{{ nameS }}</h2>
-    <div class="list-serie" v-for="(series, index) in this.store.listSeries" :key="index">
-        <div class="img-poster">
-            <img :src="`http://image.tmdb.org/t/p/w342/${series.poster_path}`" alt="">
+    <!-- SERIES -->
+    <div class="container-fluid mt-3">
+        <div class="list" v-if="store.listSeries.length > 0">
+            <h2 class="text-center">{{ nameS }}</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 gx-0">
+                <div class="col" v-for="(series, index) in this.store.listSeries" :key="index">
+                    <div class="mycard">
+                        <div class="img-poster">
+                            <img :src="`http://image.tmdb.org/t/p/w342/${series.poster_path}`" alt="">
+                        </div>
+                        <div class="info">
+                            <h4>Titolo:{{ series.name }}</h4>
+                            <h4>Titolo originale:{{ series.original_name }}</h4>
+                            <img :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
+                            <AppStars :item="series" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h4>{{ series.name }}</h4>
-        <h4>{{ series.original_name }}</h4>
-        <img :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
-        <p>{{ series.vote_average }}</p>
     </div>
 
 </template>
@@ -45,14 +72,38 @@ export default {
 <style lang="scss" scoped>
 @use "../styles/general.scss" as *;
 
-.img-poster {
-    width: 200px;
-    height: 250px;
 
-    img {
+
+.mycard {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+
+    .img-poster {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .info {
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        top: 0;
+        left: 0;
+
+        .star {
+            p {
+                display: inline-block;
+                margin-right: 1rem;
+            }
+        }
     }
 }
 
