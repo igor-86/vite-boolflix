@@ -69,8 +69,22 @@ export default {
 .main {
   width: 100%;
   height: calc(100vh - 80px);
-  background-color: aqua;
+  background-color: black;
   margin-top: 80px;
-  overflow-y: scroll;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    background-color: white;
+
+  }
+
+  &::-webkit-scrollbar-thumb {
+
+
+    background-color: red;
+    border-radius: 50%;
+  }
+
 }
 </style>

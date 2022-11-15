@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-    <div class="quotes">
+    <div class="quotes d-flex">
         <p>Voto:</p>
         <div class="vote">
             <p v-if="Math.round((5 * item.vote_average) / 10) === 0">

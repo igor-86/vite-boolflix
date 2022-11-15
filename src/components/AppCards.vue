@@ -35,9 +35,12 @@ export default {
                             <img :src="`http://image.tmdb.org/t/p/w342/${inner.poster_path}`" alt="">
                         </div>
                         <div class="info">
-                            <h4>Titolo:{{ inner.title }}</h4>
-                            <h4>Titolo originale:{{ inner.original_title }}</h4>
-                            <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
+                            <h4>{{ inner.title }}</h4>
+                            <p>Titolo originale:{{ inner.original_title }}</p>
+                            <div class="langue d-flex">
+                                <p class="me-3">{{ inner.original_language }}</p>
+                                <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
+                            </div>
                             <AppStars :item="inner" />
                         </div>
                     </div>
@@ -56,9 +59,13 @@ export default {
                             <img :src="`http://image.tmdb.org/t/p/w342/${series.poster_path}`" alt="">
                         </div>
                         <div class="info">
-                            <h4>Titolo:{{ series.name }}</h4>
-                            <h4>Titolo originale:{{ series.original_name }}</h4>
-                            <img :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
+                            <h4>{{ series.name }}</h4>
+                            <p>Titolo originale:{{ series.original_name }}</p>
+                            <div class="langue d-flex">
+                                <p class="me-3">{{ series.original_language }}</p>
+                                <img :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
+                            </div>
+
                             <AppStars :item="series" />
                         </div>
                     </div>
@@ -73,12 +80,21 @@ export default {
 @use "../styles/general.scss" as *;
 
 
+h2 {
+    color: white;
+}
 
 .mycard {
     width: 100%;
     height: 450px;
     overflow: hidden;
     position: relative;
+
+    &:hover {
+        .info {
+            bottom: 0;
+        }
+    }
 
     .img-poster {
         width: 100%;
@@ -91,12 +107,29 @@ export default {
         }
     }
 
+    h4 {
+        font-weight: 700;
+        text-transform: uppercase;
+
+        margin-bottom: 1.2rem;
+    }
+
+    p {
+        color: #ebebeb;
+
+        font-weight: 400;
+
+    }
+
     .info {
         position: absolute;
-        background-color: white;
+        background-color: rgba(0, 0, 0, 0.563);
         width: 100%;
-        top: 0;
+        bottom: -100%;
         left: 0;
+        color: white;
+        padding: 1.5rem .8rem;
+        transition: all .6s ease-in-out;
 
         .star {
             p {

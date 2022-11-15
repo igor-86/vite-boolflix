@@ -18,7 +18,7 @@ export default {
         <h2>{{ name }}</h2>
         <div class="form-search">
             <input type="text" placeholder="scrivi qui" v-model="store.searchKey">
-            <button class="btn-1 ms-1" @click="$emit('startSearch')">Cerca</button>
+            <button class="btn ms-1 my-btn" @click="$emit('startSearch')">Cerca</button>
         </div>
     </div>
 
@@ -43,6 +43,7 @@ export default {
         color: white;
         text-transform: uppercase;
         margin-left: 1rem;
+        font-weight: 800;
     }
 
     .form-search {
@@ -50,6 +51,12 @@ export default {
 
         input {
             width: 250px;
+            padding: .375rem 0;
+            border-radius: .375rem;
+        }
+
+        .my-btn {
+            background-color: white;
         }
     }
 }
