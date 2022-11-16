@@ -32,7 +32,9 @@ export default {
                 <div class="col" v-for="(inner, index) in this.store.listFilm" :key="index">
                     <div class="mycard">
                         <div class="img-poster">
-                            <img :src="`http://image.tmdb.org/t/p/w342/${inner.poster_path}`" alt="">
+                            <img v-if="inner.poster_path" :src="`http://image.tmdb.org/t/p/w342/${inner.poster_path}`"
+                                alt="">
+                            <img v-else src="../assets/img/not-image.png" alt="">
                         </div>
                         <div class="info">
                             <h4>{{ inner.title }}</h4>
@@ -57,7 +59,9 @@ export default {
                 <div class="col" v-for="(series, index) in this.store.listSeries" :key="index">
                     <div class="mycard">
                         <div class="img-poster">
-                            <img :src="`http://image.tmdb.org/t/p/w342/${series.poster_path}`" alt="">
+                            <img v-if="series.poster_path" :src="`http://image.tmdb.org/t/p/w342/${series.poster_path}`"
+                                alt="">
+                            <img v-else src="../assets/img/not-image.png" alt="">
                         </div>
                         <div class="info">
                             <h4>{{ series.name }}</h4>
