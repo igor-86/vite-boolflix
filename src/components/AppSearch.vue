@@ -52,7 +52,7 @@ export default {
         input {
             width: 250px;
             padding: .375rem 0;
-            border-radius: .375rem;
+            border-radius: .375remgit;
         }
 
         .my-btn {

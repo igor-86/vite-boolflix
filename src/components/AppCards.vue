@@ -8,7 +8,7 @@ export default {
             store,
             nameF: "Movies",
             nameS: "Series",
-            imgLang: "de.svg",
+            avFlags: ["de", "it", "fr", "es", "en"]
         }
     },
     methods: {
@@ -38,8 +38,9 @@ export default {
                             <h4>{{ inner.title }}</h4>
                             <p>Titolo originale:{{ inner.original_title }}</p>
                             <div class="langue d-flex">
-                                <p class="me-3">{{ inner.original_language }}</p>
-                                <img :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
+                                <img v-if="avFlags.includes(inner.original_language)"
+                                    :src="getImagePath(`../assets/img/${inner.original_language}.svg`)" alt="">
+                                <p v-else class="me-3">{{ inner.original_language }}</p>
                             </div>
                             <AppStars :item="inner" />
                         </div>
@@ -62,8 +63,9 @@ export default {
                             <h4>{{ series.name }}</h4>
                             <p>Titolo originale:{{ series.original_name }}</p>
                             <div class="langue d-flex">
-                                <p class="me-3">{{ series.original_language }}</p>
-                                <img :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
+                                <img v-if="avFlags.includes(series.original_language)"
+                                    :src="getImagePath(`../assets/img/${series.original_language}.svg`)" alt="">
+                                <p v-else class="me-3">{{ series.original_language }}</p>
                             </div>
 
                             <AppStars :item="series" />
@@ -144,5 +146,6 @@ img {
     width: 30px;
     height: 20px;
     object-fit: cover;
+    margin-bottom: 1rem;
 }
 </style>
